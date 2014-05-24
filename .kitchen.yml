@@ -1,0 +1,27 @@
+---
+
+driver_config:
+    require_chef_omnibus: 11.12.2
+
+provisioner:
+  name: chef_zero
+  data_bags_path: "../../data_bags"
+  environments_path: "../../environments"
+  roles_path: "../../roles"
+  nodes_path: "../../nodes"
+
+platforms:
+  - name: ubuntu-local
+    driver_plugin: vagrant
+    driver_config:
+      box: ubuntu_12_04_desktop
+      box_url: /Users/malcolm/dev/basebox-packer/virtualbox/ubuntu1204-desktop-provisionerless.box"
+
+suites:
+  - name: scarlett-server
+    run_list:
+      - recipe[bebootstrap::default]
+    attributes:
+      authorization:
+        sudo:
+          users: [ "pi" ]
