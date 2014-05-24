@@ -1,0 +1,15 @@
+DEPENDENCIES
+  bossjones-chef-scarlett
+    path: .
+    metadata: true
+  sudo
+    path: ../sudo
+  users
+    path: ../users
+
+GRAPH
+  bossjones-chef-scarlett (0.1.0)
+    sudo (>= 0.0.0)
+    users (>= 0.0.0)
+  sudo (2.5.3)
+  users (1.7.1)

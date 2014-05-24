@@ -2,6 +2,8 @@ load '../../config/Berksfile.config'
 
 load_source
 
+#source 'http://api.berkshelf.com/'
+
 metadata
 
 cookbook "users", path: "../users"

@@ -1,5 +1,6 @@
 
-include_recipe 'users::pi'
+include_recipe 'users::default'
+include_recipe 'users::piusers'
 include_recipe 'bossjones-chef-scarlett::sshd_config'
 
 # create a /usr/local/bin and add to path
