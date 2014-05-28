@@ -15,13 +15,23 @@ platforms:
     driver_plugin: vagrant
     driver_config:
       box: ubuntu_12_04_desktop
-      box_url: /Users/malcolm/dev/basebox-packer/virtualbox/ubuntu1204-desktop-provisionerless.box"
+      box_url: "/Users/malcolm/dev/ubuntu-vm/box/virtualbox/ubuntu1204-desktop-chef11.12.4.box"
 
 suites:
   - name: scarlett-server
+    provisioner:
+      client_rb:
+        environment: "dev-scarlett"
+    network:
+    - ["forwarded_port", {guest: 80, host: 8080}]
+    - ["forwarded_port", {guest: 443, host: 8443, auto_correct: true}]
+    - ["forwarded_port", {guest: 22, host: 2222, auto_correct: true}]
+    - ["private_network", {ip: "192.168.58.101"}]
     run_list:
+      - recipe[openssh::default]
       - recipe[bossjones-chef-scarlett::default]
-    attributes:
-      authorization:
-        sudo:
-          users: [ "pi" ]
+      #- recipe[users::piusers]
+    # attributes:
+      # authorization:
+        # sudo:
+          # users: [ "pi" ]
