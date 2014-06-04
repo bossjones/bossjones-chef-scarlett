@@ -22,16 +22,21 @@ suites:
     provisioner:
       client_rb:
         environment: "dev-scarlett"
-    network:
-    - ["forwarded_port", {guest: 80, host: 8080}]
-    - ["forwarded_port", {guest: 443, host: 8443, auto_correct: true}]
-    - ["forwarded_port", {guest: 22, host: 2222, auto_correct: true}]
-    - ["private_network", {ip: "192.168.58.101"}]
+    driver:
+      network:
+        - ["forwarded_port", {guest: 80, host: 8080}]
+        - ["forwarded_port", {guest: 443, host: 8443, auto_correct: true}]
+        - ["forwarded_port", {guest: 22, host: 2200, auto_correct: true}]
+        - ["private_network", {ip: "192.168.58.101"}]
+      customize:
+        natdnshostresolver1: "on"
+        hostonlyadapter2: "vboxnet0"
+        memory: 512
     run_list:
       - recipe[openssh::default]
       - recipe[bossjones-chef-scarlett::default]
       #- recipe[users::piusers]
-    # attributes:
-      # authorization:
-        # sudo:
-          # users: [ "pi" ]
+      # attributes:
+        # authorization:
+          # sudo:
+            # users: [ "pi" ]
