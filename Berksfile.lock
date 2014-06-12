@@ -1,4 +1,6 @@
 DEPENDENCIES
+  bossjones-chef-bash-it
+    path: ../bossjones-chef-bash-it
   bossjones-chef-scarlett
     path: .
     metadata: true
@@ -10,6 +12,7 @@ DEPENDENCIES
     path: ../users
 
 GRAPH
+  bossjones-chef-bash-it (0.1.0)
   bossjones-chef-scarlett (0.1.0)
     sudo (>= 0.0.0)
     users (>= 0.0.0)
